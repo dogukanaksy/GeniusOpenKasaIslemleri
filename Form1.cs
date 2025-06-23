@@ -14,8 +14,8 @@ namespace KasaVersiyonGuncelleme
 {
     public partial class Form1 : Form
     {
-        string username = "ADMINISTRATOR";
-        string password = "Server1";
+        string username = "BAGLANTI_SAGLANACAK_CİHAZ_ADMIN_USER_ADI";
+        string password = "BAGLANTI_SAGLANACAK_CİHAZ_ADMIN_USER_ŞİFRESİ";
 
         public Form1()
         {
