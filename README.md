@@ -1,30 +1,42 @@
-# GeniusOpenKasaIslemleri
+# GeniusOpenKasaIslemleri — Kasa Manuel İşlemler
 
-![image](https://github.com/user-attachments/assets/632a1fbb-6376-454d-a63f-781e48b15ee6)
+Toshiba **GeniusOpen** kasalarında versiyon güncelleme ve dosya işlemlerini, IP listesindeki tüm kasalara **tek ekrandan, toplu olarak** uygulayan bir Windows Forms aracı.
 
+Normalde her kasaya tek tek bağlanıp dosya kopyalamak gerekir. Bu araç sayesinde yüzlerce kasada aynı işlem tek tıkla yapılır ve her kasanın sonucu Excel'e loglanır.
 
-IpAdresleri ve Kaynak isimli klasörler programın çalıştırıldığı bilgisayarın C:\ dizininde olmalı.
-ips.txtye ip adresleri girilmeli
-Kaynak klasörü içerisinde fashion klasörüne fashion içerisine atılmak istenen dosya bırakılmalı
-(DİKKAT FASHION KLASORUNE ATILAN DOSYANIN ADI PARAMETERS.BAT KASA VERSIYON JARI ALANINA YAZILIYOR.)
-Kaynak klasörü içerisinde config klasörüne config içerisine atılmak istenen dosya bırakılmalı
-Kaynak klasörü içerisinde lib klasörüne lib içerisine aktarılmak istenen dosya bırakılmalı
+![Ekran görüntüsü](https://github.com/user-attachments/assets/632a1fbb-6376-454d-a63f-781e48b15ee6)
 
-Eve teslim servis linki xx.xx.xx.xx\c\fashion\geniuspos.ini dosyası içeriğini düzenler.
-Cp.bat > xx.xx.xx.xx\c\fashion\cp.bat dosyasının en altına istenilen jarın aktif edilmesini sağlar.
-Texte dogukan.jar girerseniz;
-cp.bat en alt satıra 
+## Özellikler
+
+| İşlem | Açıklama |
+|---|---|
+| **Kasa Versiyonu Güncelle** | `fashion`, `config` ve `lib` klasörlerine yeni dosyaları kopyalar; `parameters.bat` içindeki kasa versiyon jar adını günceller |
+| **Libe Dosya Aktar** | Seçilen dosyaları kasanın `lib` klasörüne aktarır |
+| **Cp.Bat Veri Ekle** | `cp.bat` dosyasının sonuna yeni jar için `CLASSPATH` satırı ekler |
+| **TransferProperties Aktar** | Transfer ayar dosyasını kasalara dağıtır |
+| **Eve Teslim Servis Linki Düzenle** | `geniuspos.ini` içindeki eve teslim servis adresini günceller |
+| **Dosya Sil / Dosya Adını Değiştir** | Kasalarda toplu dosya silme ve yeniden adlandırma |
+
+Örnek: Cp.Bat alanına `dogukan.jar` yazılırsa `cp.bat` dosyasının sonuna şu satır eklenir:
+
+```bat
 set CLASSPATH=%CLASSPATH%;%FASHION_HOME%\lib\dogukan.jar
-yazar.
+```
 
-Not: 
-programın çalıştırıldığı bilgisayarda smb1.0 paylaşım desteği açılmalı(program ekle kaldır kısmındaki gelişmiş Windows seçeneklerinden açılabiliyor) (xp cihazlara erişebilmek için)
-tcx cihazlarda güvenlik duvarı kapalı olmalı.
-Programın çalışması için .NET 6.0 ve üzeri bilgisayarınızda yüklü olmalı.Yüklü değilse program açılışında size bu sürümü yüklemeniz için bilgi veriyor.
+## Kullanım
 
-Program açılırken masaüstünde log.xlsx dosyası oluşturuyor. Eğer bu dosya mevcut ise program açılışında içeriğinin temizlenmesini ister misiniz sorusu oluyor. Program açıkken ve işlem yapılırken arka planda log.xlsx dosyası açıksa hata alırsınız. Excel açıkken program içeriğine veri yazamıyor.
+1. `C:\IpAdresleri\ips.txt` dosyasına kasa IP adreslerini satır satır yazın.
+2. `C:\Kaynak\` altındaki `fashion`, `config` ve `lib` klasörlerine aktarılacak dosyaları koyun.
+3. Programı açıp ilgili işlemi seçin.
+4. Sonuçlar masaüstündeki `log.xlsx` dosyasına IP adresi ve başarılı/başarısız durumu ile yazılır.
 
-Log için excelde'ki ip adresi ve başarılı başarısız kısımlarını göz önünde bulundurmanız yeterlidir.
+## Gereksinimler
 
+- .NET 6.0 (Windows)
+- XP tabanlı kasalara erişim için çalıştırılan bilgisayarda **SMB 1.0** desteği açık olmalı
+- TCx cihazlarda güvenlik duvarı paylaşıma izin vermeli
+- İşlem sırasında `log.xlsx` Excel'de açık olmamalı
 
+## Teknolojiler
 
+C# · .NET 6 Windows Forms · SMB dosya paylaşımı · EPPlus (Excel loglama)
